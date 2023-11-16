@@ -1,9 +1,15 @@
 {
   "name": "ecommerce-mern",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "backend/src/server.js",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "server": "nodemon backend/src/server.js",
+    "client": "npm run dev --prefix frontend",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
