@@ -5,18 +5,12 @@ import {  getProducts } from './context-api';
 
 export const ShopContext = createContext(null)
 
-
-
-
-
 export const ShopContextProvider = ( props)=>{
 
  
-  // const [numOfProducts, setNumOfProducts] = useState(0);
   const [allProducts, setAllProducts] = useState([])
   const [cartItems, setCartItems] = useState({});
 
-  // setNumOfProducts(getNumOfProducts)
   useEffect(() => {
     async function fetchProducts () {
     
@@ -24,7 +18,9 @@ export const ShopContextProvider = ( props)=>{
       setAllProducts(allProductsArr)
     }
     fetchProducts()
-  }, [allProducts]);
+
+    //allProducts cannot be a dep, otherwise inifinite render
+  }, []);
  
  
  

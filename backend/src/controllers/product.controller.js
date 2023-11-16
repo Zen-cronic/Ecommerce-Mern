@@ -1,22 +1,44 @@
 import asyncHandler from "express-async-handler";
-import { createProduct } from "../services/product.service.js";
+import { createProduct, getAllProducts, getOneProduct, getProductsCount } from "../services/product.service.js";
 
+ const createProductHandler = asyncHandler(async (req, res) => {
 
+  const newProduct = await createProduct(req.body);
+  return res.status(201).json({ newProduct });
+});
 
-export const createProductHandler = asyncHandler(async(req, res) => {
+ const getAllProductsHandler = asyncHandler(async (req, res) => {
 
+  const allProducts = await getAllProducts();
+  // console.log(allProducts);
+  return res.status(200).json({ allProducts });
+});
 
-    const newProduct = await createProduct(req.body)
+const getOneProductHandler = asyncHandler(async(req,res)=> {
+
+  const {productId} = req.params
+ 
+    const product = await getOneProduct(productId)
     
-    return res.status(201).json({newProduct})
-        
+    if(!product){
+      return res.sendStatus(404)
+    }
+
+
+    res.status(404).json({error})
+  
+
+  //if not found - 404
+ 
 })
 
-export const getAllProducts = asyncHandler(async (req, res) => {
-    try {
-      const products = await ProductModel.find({});
-      res.json({ products });
-    } catch (error) {
-      console.error(error);
-    }
-  })
+const getProductsCountHandler = asyncHandler(async(req,res)=>{
+
+ 
+  const numOfProducts = await getProductsCount()
+
+  return res.status(200).json({ numOfProducts });
+
+})
+export {getAllProductsHandler, createProductHandler, getOneProductHandler, getProductsCountHandler}
+

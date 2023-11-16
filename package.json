@@ -1,12 +1,12 @@
 {
   "name": "ecommerce-mern",
   "version": "1.0.0",
-  "main": "backend/src/server.js",
+  "main": "backend/src/app.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node backend/src/server.js",
-    "server": "nodemon backend/src/server.js",
+    "start": "node backend/src/app.js",
+    "server": "nodemon backend/src/app.js",
     "client": "npm run dev --prefix frontend",
     "dev": "concurrently --restart-tries 3 \"yarn server\" \"yarn client\"",
     "test": "jest"

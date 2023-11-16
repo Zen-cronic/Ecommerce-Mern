@@ -5,8 +5,8 @@ export async function getProducts() {
     
     try {
         const response = await axios.get("http://localhost:5005/products")
-        console.log(response.data.products)
-        return response.data.products
+        console.log(response.data.allProducts)
+        return response.data.allProducts
    //setProducts
     
       } catch (error) {

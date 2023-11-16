@@ -1,8 +1,9 @@
 
 
-const errorHandler = (err,res,req,next) => {
+const errorHandler = (err,req,res,next) => {
 
-    const statusCode = res.statusCode === 200 ? 500: res.statusCode
+    //how to customize mongo error status with custom error? e.g. 404 not found
+    const statusCode = res.statusCode === 200 ? 404: res.statusCode
 
     const message = err.message
 
