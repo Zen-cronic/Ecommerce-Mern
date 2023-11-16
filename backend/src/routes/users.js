@@ -1,6 +1,6 @@
 
 import express from "express"
-import { UserModel } from "../models/Users.js";
+import  UserModel  from "../models/Users.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 

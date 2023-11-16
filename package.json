@@ -8,7 +8,8 @@
     "start": "node backend/src/server.js",
     "server": "nodemon backend/src/server.js",
     "client": "npm run dev --prefix frontend",
-    "dev": "concurrently --restart-tries 3 \"yarn server\" \"yarn client\""
+    "dev": "concurrently --restart-tries 3 \"yarn server\" \"yarn client\"",
+    "test": "jest"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

@@ -8,6 +8,7 @@ import { productRouter } from "./routes/products.js";
 import { checkoutRouter } from "./routes/checkout.js";
 import { historyRouter } from "./routes/history.js";
 import { searchRouter } from "./routes/search.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 
 
@@ -23,7 +24,7 @@ app.use("/products", productRouter)
 app.use("/history", historyRouter)
 app.use("/search", searchRouter)
 
-
+app.use(errorHandler)
 
 mongoose.connect("mongodb+srv://kzh113:pass123@recipes.vivbonf.mongodb.net/eCommerce?retryWrites=true&w=majority").then(
     ()=> {
