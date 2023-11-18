@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import { userRouter } from "../routes/users.route.js";
+import { userRouter } from "../routes/auth.route.js";
 import { productRouter } from "../routes/products.route.js";
 import { checkoutRouter } from "../routes/checkout.route.js";
 import { historyRouter } from "../routes/history.route.js";
@@ -14,8 +14,8 @@ function createServer() {
   app.use(express.json());
   app.use(cors());
 
+  app.use("/auth", userRouter);
   app.use("/checkout", checkoutRouter);
-  app.use("/users", userRouter);
   app.use("/products", productRouter);
   app.use("/history", historyRouter);
   app.use("/search", searchRouter);

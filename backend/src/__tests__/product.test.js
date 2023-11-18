@@ -65,7 +65,7 @@ describe("product", () => {
           __v: expect.any(Number),
         };
 
-        console.log(returnedProduct);
+        // console.log(returnedProduct);
 
         expect(statusCode).toBe(201);
         expect(body.newProduct).toEqual(returnedProductObj);

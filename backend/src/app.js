@@ -1,15 +1,12 @@
-
 import dotenv from "dotenv";
-
-
 import connectDB from "./utils/connectDB.js";
 import createServer from "./utils/server.js";
 
 dotenv.config();
 
-const app = createServer() 
+const app = createServer();
 
-const PORT = process.env.PORT || 5005
+const PORT = process.env.PORT || 5005;
 
 connectDB();
 
