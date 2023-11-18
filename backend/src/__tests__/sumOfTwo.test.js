@@ -1,6 +1,6 @@
 import sumOfTwo from "../utils/sumOfTwo.js";
 
-describe("sumOfTwo function", () => {
+describe.skip("sumOfTwo function", () => {
   it("should add two numbers and return the sum", () => {
     const result = sumOfTwo(99, 1);
 

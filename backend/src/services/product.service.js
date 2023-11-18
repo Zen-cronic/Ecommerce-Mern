@@ -25,7 +25,7 @@ const getAllProducts = async () => {
 const getOneProduct = async (productId) => {
   try {
     const product = await ProductModel.findById(productId).lean().exec();
-    console.log(product);
+    // console.log(product);
     return product;
   } catch (error) {
 
