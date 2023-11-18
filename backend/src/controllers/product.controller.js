@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import { createProduct, getAllProducts, getOneProduct, getProductsCount } from "../services/product.service.js";
+import { createProduct, getAllProducts, getOneProduct } from "../services/product.service.js";
 
  const createProductHandler = asyncHandler(async (req, res) => {
 
@@ -20,9 +20,9 @@ const getOneProductHandler = asyncHandler(async(req,res)=> {
  
     const product = await getOneProduct(productId)
     
-    if(!product){
-      return res.sendStatus(404)
-    }
+    // if(!product){
+    //   return res.sendStatus(404)
+    // }
 
 
     return res.status(200).json({product})
@@ -32,13 +32,6 @@ const getOneProductHandler = asyncHandler(async(req,res)=> {
  
 })
 
-const getProductsCountHandler = asyncHandler(async(req,res)=>{
 
- 
-  const numOfProducts = await getProductsCount()
-
-  return res.status(200).json({ numOfProducts });
-
-})
-export {getAllProductsHandler, createProductHandler, getOneProductHandler, getProductsCountHandler}
+export {getAllProductsHandler, createProductHandler, getOneProductHandler}
 

@@ -24,7 +24,9 @@ const getAllProducts = async () => {
 
 const getOneProduct = async (productId) => {
   try {
-    const product = await ProductModel.findById(productId).lean().exec();
+
+    //if lean() cannot access docu prop
+    const product = await ProductModel.findById(productId).exec();
     // console.log(product);
     return product;
   } catch (error) {
@@ -34,15 +36,5 @@ const getOneProduct = async (productId) => {
   }
 };
 
-const getProductsCount = async () => {
-  try {
-    const numOfProducts = await ProductModel.countDocuments({}).lean().exec();
 
-    return numOfProducts;
-  } catch (error) {
-    console.log(error);
-
-    throw new Error("Failed to fetch total products count");
-  }
-};
-export { getAllProducts, createProduct, getOneProduct, getProductsCount };
+export { getAllProducts, createProduct, getOneProduct};
