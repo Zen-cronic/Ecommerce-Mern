@@ -1,8 +1,8 @@
 import supertest from "supertest";
-import createServer from "../utils/server";
+import createServer from "../../utils/server";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { createProduct, getOneProduct } from "../services/product.service";
+import { createProduct, getOneProduct } from "../../services/product.service";
 
 const app = createServer();
 
@@ -73,7 +73,6 @@ describe("product", () => {
     });
 
     describe("given the product fails to be created", () => {
-
       it("should return 500 from custom errorHandler", async () => {
         const { statusCode } = await supertest(app).post("/products");
 

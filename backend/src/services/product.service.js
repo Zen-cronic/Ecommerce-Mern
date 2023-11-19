@@ -7,7 +7,7 @@ const createProduct = async (productInfo) => {
     const newProduct = await ProductModel.create({ productName, price });
     return newProduct;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     
     throw new Error("failed to create new product");
   }

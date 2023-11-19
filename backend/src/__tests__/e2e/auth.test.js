@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import * as UserService from "../services/user.service.js";
+import * as UserService from "../../services/user.service.js";
 import supertest from "supertest";
-import createServer from "../utils/server.js";
+import createServer from "../../utils/server.js";
+import { loginUserHandler } from "../../controllers/auth.controller.js";
 
 const userId = new mongoose.Types.ObjectId().toString();
 
@@ -68,22 +69,53 @@ describe("auth", () => {
     beforeEach(() => {
       validatePasswordServiceMock = jest.spyOn(UserService, "validatePassword");
     });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
     describe("given a valid username exists and correct passowrd is entered", () => {
       it("should return accessToken and set cookie in browser", async () => {
         validatePasswordServiceMock.mockReturnValueOnce(userPayload);
 
-        const { statusCode, body } = await supertest(app)
-          .post("/auth/login")
-          .send(userInput);
+        const cookie = jest.fn();
+        const status = jest.fn().mockReturnThis();
+        const json = jest.fn().mockReturnThis();
 
-        expect(statusCode).toBe(200);
-        expect(body.accessToken).toBe("ey");
+        const res = {
+          cookie,
+          json,
+          status,
+        };
+
+        const req = {
+          body: userInput,
+        };
+
+        await loginUserHandler(req, res);
+
+        expect(cookie).toHaveBeenCalledWith("jwt", expect.any(String));
+        expect(status).toHaveBeenCalledWith(200);
+        expect(json).toHaveBeenCalledWith({
+          accessToken: expect.any(String),
+        });
+
         expect(validatePasswordServiceMock).toHaveBeenCalledWith(userInput);
       });
     });
 
     describe("given a invalid username and/or incorrect password entered", () => {
-      it("should return a 401 with message", () => {});
+      it("should return a 401 with message", async () => {
+        validatePasswordServiceMock.mockReturnValueOnce(false);
+
+        const { statusCode, body } = await supertest(app)
+          .post("/auth/login")
+          .send(userInput);
+
+        expect(statusCode).toBe(401);
+        expect(body.message).toContain("Invalid username or password");
+
+        expect(validatePasswordServiceMock).toHaveBeenCalledWith(userInput);
+      });
     });
   });
 });

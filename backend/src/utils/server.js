@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import { userRouter } from "../routes/auth.route.js";
 import { productRouter } from "../routes/products.route.js";
@@ -7,6 +8,8 @@ import { checkoutRouter } from "../routes/checkout.route.js";
 import { historyRouter } from "../routes/history.route.js";
 import { searchRouter } from "../routes/search.route.js";
 import errorHandler from "../middleware/errorHandler.js";
+
+dotenv.config();
 
 function createServer() {
   const app = express();

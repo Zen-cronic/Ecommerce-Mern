@@ -4,5 +4,8 @@
     "transform": {
         "^.+\\.jsx?$": "babel-jest"
       },
-    "forceExit": true
+    "forceExit": true,
+    "clearMocks":true,
+    "resetMocks": true,
+    "restoreMocks":true
 }
