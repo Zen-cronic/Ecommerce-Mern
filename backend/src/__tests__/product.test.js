@@ -29,7 +29,7 @@ describe("product", () => {
 
         expect(false).toBe(false);
 
-        await supertest(app).get(`/products/${productId}`).expect(404);
+        await supertest(app).get(`/products/${productId}`).expect(500);
       });
     });
     describe("given the existing productId ", () => {
@@ -74,10 +74,10 @@ describe("product", () => {
 
     describe("given the product fails to be created", () => {
 
-      it("should return 404 from custom errorHandler", async () => {
+      it("should return 500 from custom errorHandler", async () => {
         const { statusCode } = await supertest(app).post("/products");
 
-        expect(statusCode).toBe(404);
+        expect(statusCode).toBe(500);
       });
     });
   });

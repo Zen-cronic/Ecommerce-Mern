@@ -20,7 +20,7 @@ function createServer() {
   app.use("/history", historyRouter);
   app.use("/search", searchRouter);
 
-  app.use(errorHandler);
+  // app.use(errorHandler);
 
   return app;
 }

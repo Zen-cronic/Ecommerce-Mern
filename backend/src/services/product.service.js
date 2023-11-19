@@ -8,6 +8,7 @@ const createProduct = async (productInfo) => {
     return newProduct;
   } catch (error) {
     console.error(error);
+    
     throw new Error("failed to create new product");
   }
 };

@@ -26,6 +26,8 @@ const validatePassword = async (username, password) => {
   if (!isValidPwd) {
     return false;
   }
+
+  return user
 };
 
 export { validatePassword, createUser };

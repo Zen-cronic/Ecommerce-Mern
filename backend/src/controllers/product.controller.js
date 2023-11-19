@@ -4,6 +4,8 @@ import { createProduct, getAllProducts, getOneProduct } from "../services/produc
  const createProductHandler = asyncHandler(async (req, res) => {
 
   const newProduct = await createProduct(req.body);
+
+ 
   return res.status(201).json({ newProduct });
 });
 

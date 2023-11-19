@@ -10,11 +10,12 @@ const errorHandler = (err,req,res,next) => {
     }
     
     //mongo err - chg to 500
-    if(res.statusCode === null ){
+    else if(res.statusCode === null ){
         statusCode = 500
     }
 
-    statusCode =res.statusCode
+    else 
+        statusCode =res.statusCode
 
     const message = err.message
 
