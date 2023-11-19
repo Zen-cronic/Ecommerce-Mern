@@ -30,4 +30,14 @@ const validatePassword = async (username, password) => {
   return user
 };
 
-export { validatePassword, createUser };
+const findUserById = async(userID) => {
+
+  const user = await UserModel.findById(userID).exec()
+  
+  if(!user){
+    return false
+  }
+  return user
+}
+
+export { validatePassword, createUser , findUserById};
