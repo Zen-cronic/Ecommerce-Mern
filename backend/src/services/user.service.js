@@ -32,7 +32,7 @@ const validatePassword = async (username, password) => {
 
 const findUserById = async(userID) => {
 
-  const user = await UserModel.findById(userID).exec()
+  const user = await UserModel.findById(userID).select({password: 0}).exec()
   
   if(!user){
     return false

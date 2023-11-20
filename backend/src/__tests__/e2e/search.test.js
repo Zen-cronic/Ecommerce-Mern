@@ -1,7 +1,6 @@
 import supertest from "supertest";
 import * as SearchService from "../../services/search.service.js";
 import createServer from "../../utils/server.js";
-import { Document } from "mongoose";
 
 const app = createServer();
 
