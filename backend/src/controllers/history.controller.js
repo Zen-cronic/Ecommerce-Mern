@@ -1,5 +1,5 @@
-import { getOrderHistory } from "../services/history.service";
-import { findUserById } from "../services/user.service";
+import { getOrderHistory } from "../services/history.service.js";
+import { findUserById } from "../services/user.service.js";
 
 
 const historyHandler = async(req,res) => {

@@ -1,3 +1,5 @@
+//integration
+
 import supertest from "supertest";
 import * as CheckOutService from "../../services/checkout.service.js";
 import * as UserService from "../../services/user.service.js";
@@ -21,12 +23,8 @@ describe("checkout products", () => {
 
   let checkOutServiceMock;
   beforeEach(() => {
-
-    findUserByIdServiceMock = jest.spyOn(UserService, "findUserById")
-    checkOutServiceMock = jest.spyOn(CheckOutService, "checkOut" );
-
-
-
+    findUserByIdServiceMock = jest.spyOn(UserService, "findUserById");
+    checkOutServiceMock = jest.spyOn(CheckOutService, "checkOut");
   });
 
   afterEach(() => {
@@ -37,38 +35,38 @@ describe("checkout products", () => {
 
   describe("given the user is not logged in", () => {
     it("should return a 401 with message", async () => {
-
       findUserByIdServiceMock.mockResolvedValueOnce(false);
- 
+
       const { statusCode, body } = await supertest(app)
         .put(`/checkout/${userID}`)
         .send(currentOrder);
 
-      expect(statusCode).toBe(401)
+      expect(statusCode).toBe(401);
       expect(body.message).toContain("Must be logged in to checkout");
 
-      expect(checkOutServiceMock).not.toHaveBeenCalled()
+      expect(checkOutServiceMock).not.toHaveBeenCalled();
       expect(findUserByIdServiceMock).toHaveBeenCalled();
-
     });
   });
 
   describe("given the user is logged in", () => {
     it("should return the currentOrder and update database", async () => {
       findUserByIdServiceMock.mockResolvedValueOnce(userPayload);
-        checkOutServiceMock.mockResolvedValueOnce(currentOrder);
-
+      checkOutServiceMock.mockResolvedValueOnce(currentOrder);
 
       const { statusCode, body } = await supertest(app)
         .put(`/checkout/${userID}`)
         .send(currentOrder);
 
       expect(statusCode).toBe(200);
-    //   expect(body).toEqual({currentOrder})
-      expect(body).toHaveProperty("currentOrder")
+      //   expect(body).toEqual({currentOrder})
+      expect(body).toHaveProperty("currentOrder");
 
       expect(findUserByIdServiceMock).toHaveBeenCalled();
-      expect(checkOutServiceMock).toHaveBeenCalledWith(currentOrder, userPayload)
+      expect(checkOutServiceMock).toHaveBeenCalledWith(
+        currentOrder,
+        userPayload
+      );
     });
   });
 });

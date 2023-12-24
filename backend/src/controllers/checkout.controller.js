@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
-import { checkOut } from "../services/checkout.service";
-import { findUserById } from "../services/user.service";
+import { checkOut } from "../services/checkout.service.js";
+import { findUserById } from "../services/user.service.js";
 
 
 const checkOutHandler =  async (req, res) => {

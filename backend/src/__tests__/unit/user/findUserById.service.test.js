@@ -43,6 +43,7 @@ describe("findUserById function", () => {
 
   describe("given that user is a valid user", () => {
     it("should return the user object", async () => {
+      
       const expectedUser = {
         _id: expect.any(String),
         username: expect.any(String),

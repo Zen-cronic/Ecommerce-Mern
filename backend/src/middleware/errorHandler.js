@@ -2,7 +2,6 @@
 
 const errorHandler = (err,req,res,next) => {
 
-    //how to customize mongo error status with custom error? e.g. 404 not found
     let statusCode 
     
     if(res.statusCode === 200){
